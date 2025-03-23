@@ -1,9 +1,44 @@
 package factories
 
-import "aprendendogolang/types"
+import (
+	"aprendendogolang/catalogs"
+	"aprendendogolang/catalogs/arsenal"
+	"aprendendogolang/catalogs/classes"
+	"aprendendogolang/catalogs/dados"
+	"fmt"
+)
 
-func NovoPersonagem(nome string, classe types.Classe, arma *types.Arma) types.Personagem {
-	atributos := types.Atributos{
+type Personagem struct {
+	Nome        string
+	Classe      classes.Classe
+	Nivel       int
+	Experiencia int
+
+	Atributos catalogs.Atributos
+
+	FOR int
+	DES int
+	CON int
+	INT int
+	SAB int
+	CAR int
+
+	ClasseDeArmadura int
+	PontosDeVida     int
+	Arma             *arsenal.Arma
+}
+
+func (p *Personagem) CausarDano() int {
+	if p.Arma != nil {
+		return p.Arma.Dano
+	}
+	soco := dados.RolarDados(1, 4, 0) // ataque desarmado
+	fmt.Printf("Personagem %s fez um ataque desarmado com %d de dano.", p.Nome, soco)
+	return soco
+}
+
+func NovoPersonagem(nome string, classe classes.Classe, arma *arsenal.Arma) Personagem {
+	atributos := catalogs.Atributos{
 		Forca:        10,
 		Destreza:     10,
 		Constituicao: 10,
@@ -19,7 +54,7 @@ func NovoPersonagem(nome string, classe types.Classe, arma *types.Arma) types.Pe
 	SAB := Modificador(atributos.Sabedoria)
 	CAR := Modificador(atributos.Carisma)
 
-	return types.Personagem{
+	return Personagem{
 		Nome:        nome,
 		Classe:      classe,
 		Nivel:       1,

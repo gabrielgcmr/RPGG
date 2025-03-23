@@ -1,4 +1,4 @@
-package types
+package catalogs
 
 type Atributos struct {
 	Forca        int

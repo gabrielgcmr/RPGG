@@ -2,7 +2,7 @@ package battle
 
 import (
 	"aprendendogolang/catalogs/dados"
-	"aprendendogolang/types"
+	"aprendendogolang/factories"
 	"fmt"
 	"sort"
 )
@@ -14,12 +14,12 @@ type Participante struct {
 	Referencia any
 }
 
-func OrdemDeAtaque(personagens []*types.Personagem, monstro []*types.Monstro) []Participante {
+func OrdemDeAtaque(personagens []*factories.Personagem, monstro []*factories.Monstro) []Participante {
 	fmt.Println(" Iniciando rodada de combate!")
 	var participantes []Participante
 	//Rolar iniciativas e criar participantes
 	for _, p := range personagens {
-		inic := dados.D20() + p.DES
+		inic := dados.RolarDados(1, 20, p.DES)
 		fmt.Printf("%s rolou %d \n", p.Nome, inic)
 
 		participantes = append(participantes, Participante{
@@ -31,7 +31,7 @@ func OrdemDeAtaque(personagens []*types.Personagem, monstro []*types.Monstro) []
 	}
 
 	for _, m := range monstro {
-		inic := dados.D20() + m.DES
+		inic := dados.RolarDados(1, 20, m.DES)
 		fmt.Printf("%s rolou %d\n", m.Nome, inic)
 
 		participantes = append(participantes, Participante{

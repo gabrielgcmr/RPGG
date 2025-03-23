@@ -1,33 +1,36 @@
 package classes
 
-import "aprendendogolang/types"
+type Classe struct {
+	Nome     string
+	VidaBase int
+}
 
-var Barbaro = types.Classe{
+var Barbaro = Classe{
 	Nome:     "Bárbaro",
 	VidaBase: 12,
 }
 
-var Guerreiro = types.Classe{
+var Guerreiro = Classe{
 	Nome:     "Guerreiro",
 	VidaBase: 10,
 }
 
-var Mago = types.Classe{
+var Mago = Classe{
 	Nome:     "Mago",
 	VidaBase: 6,
 }
 
-var Ladino = types.Classe{
+var Ladino = Classe{
 	Nome:     "Ladino",
 	VidaBase: 8,
 }
 
-var Paladino = types.Classe{
+var Paladino = Classe{
 	Nome:     "Paladino",
 	VidaBase: 10,
 }
 
-var Bardo = types.Classe{
+var Bardo = Classe{
 	Nome:     "Bardo",
 	VidaBase: 8,
 }

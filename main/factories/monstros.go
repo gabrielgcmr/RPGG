@@ -1,14 +1,34 @@
 package factories
 
-import "aprendendogolang/types"
+import (
+	"aprendendogolang/catalogs"
+	"aprendendogolang/catalogs/arsenal"
+)
+
+type Monstro struct {
+	Nome string
+
+	Atributos catalogs.Atributos
+
+	FOR int
+	DES int
+	CON int
+	INT int
+	SAB int
+	CAR int
+
+	ClasseDeArmadura int
+	PontosDeVida     int
+	Arma             *arsenal.Arma
+}
 
 func NovoMonstro(
 	nome string,
-	arma *types.Arma,
+	arma *arsenal.Arma,
 	forca, destreza, constituicao, inteligencia, sabedoria, carisma int,
 	pontosdevida int,
-) types.Monstro {
-	atributos := types.Atributos{
+) Monstro {
+	atributos := catalogs.Atributos{
 		Forca:        forca,
 		Destreza:     destreza,
 		Constituicao: constituicao,
@@ -23,7 +43,7 @@ func NovoMonstro(
 	SAB := Modificador(sabedoria)
 	CAR := Modificador(carisma)
 
-	return types.Monstro{
+	return Monstro{
 		Nome:      nome,
 		Atributos: atributos,
 
