@@ -1,14 +1,22 @@
 package main
 
 import (
-	"aprendendogolang/battle"
+	"aprendendogolang/combate"
 	"aprendendogolang/entities"
 	"aprendendogolang/factories"
+	"fmt"
 )
 
 func main() {
-	battle.OrdemDeAtaque(
-		[]*factories.Personagem{&entities.Cactus, &entities.Thor},
-		[]*factories.Monstro{&entities.AranhaGigante})
+	ordem := combate.OrdemDeAtaque(
+		[]*factories.Personagem{&entities.Cactus, &entities.Pick},
+		[]*factories.Monstro{&entities.AranhaGigante, &entities.Lobo})
 
+	atacante := &ordem[0]
+	alvo := combate.EncontrarInimigo(atacante, ordem)
+	if alvo != nil {
+		combate.Ataque(atacante, alvo)
+	} else {
+		fmt.Println("⚠️ Nenhum inimigo disponível para atacar.")
+	}
 }

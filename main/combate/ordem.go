@@ -1,4 +1,4 @@
-package battle
+package combate
 
 import (
 	"aprendendogolang/catalogs/dados"
@@ -7,36 +7,34 @@ import (
 	"sort"
 )
 
-type Participante struct {
-	Nome       string
-	Iniciativa int
-	Tipo       string // "Personagem" ou "Monstro"
-	Referencia any
-}
-
 func OrdemDeAtaque(personagens []*factories.Personagem, monstro []*factories.Monstro) []Participante {
-	fmt.Println(" Iniciando rodada de combate!")
+	fmt.Printf(" Iniciando rodada de combate!\n")
+	fmt.Printf(" Definindo iniciativa!\n")
 	var participantes []Participante
 	//Rolar iniciativas e criar participantes
 	for _, p := range personagens {
-		inic := dados.RolarDados(1, 20, p.DES)
-		fmt.Printf("%s rolou %d \n", p.Nome, inic)
+		fmt.Printf("%s vai rolar 1d20 \n", p.Nome)
+		rolagem := dados.RolarDados(1, 20)
+		iniciativa := rolagem + p.DES
+		fmt.Printf("%s rolou %d + DES %d. Iniciativa = %d \n", p.Nome, rolagem, p.DES, iniciativa)
 
 		participantes = append(participantes, Participante{
 			Nome:       p.Nome,
-			Iniciativa: inic,
+			Iniciativa: iniciativa,
 			Tipo:       "Personagem",
 			Referencia: p,
 		})
 	}
 
 	for _, m := range monstro {
-		inic := dados.RolarDados(1, 20, m.DES)
-		fmt.Printf("%s rolou %d\n", m.Nome, inic)
+		fmt.Printf("%s vai rolar 1d20 \n", m.Nome)
+		rolagem := dados.RolarDados(1, 20)
+		iniciativa := rolagem + m.DES
+		fmt.Printf("%s rolou %d + DES %d. Iniciativa = %d \n", m.Nome, rolagem, m.DES, iniciativa)
 
 		participantes = append(participantes, Participante{
 			Nome:       m.Nome,
-			Iniciativa: inic,
+			Iniciativa: iniciativa,
 			Tipo:       "Monstro",
 			Referencia: m,
 		})

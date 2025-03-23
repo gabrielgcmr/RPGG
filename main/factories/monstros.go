@@ -3,6 +3,7 @@ package factories
 import (
 	"aprendendogolang/catalogs"
 	"aprendendogolang/catalogs/arsenal"
+	"fmt"
 )
 
 type Monstro struct {
@@ -20,6 +21,12 @@ type Monstro struct {
 	ClasseDeArmadura int
 	PontosDeVida     int
 	Arma             *arsenal.Arma
+}
+
+func (m *Monstro) CausarDano() int {
+	Dano := m.Arma.Dano()
+	fmt.Printf("👾 %s usou %s e causou %d de dano!\n", m.Nome, m.Arma.Nome, Dano)
+	return Dano
 }
 
 func NovoMonstro(

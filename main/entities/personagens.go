@@ -8,5 +8,5 @@ import (
 
 var (
 	Cactus = factories.NovoPersonagem("Cactus", classes.Barbaro, &arsenal.MachadoSimples)
-	Thor   = factories.NovoPersonagem("Thor", classes.Barbaro, &arsenal.Arco)
+	Pick   = factories.NovoPersonagem("Pick", classes.Barbaro, &arsenal.Arco)
 )

@@ -6,20 +6,28 @@ import (
 
 type Arma struct {
 	Nome string
-	Dano int
+	Dano func() int
 }
 
 var (
 	Arco = Arma{
 		Nome: "Arco Curto",
-		Dano: dados.RolarDados(1, 4, 0),
+		Dano: func() int { return dados.RolarDados(1, 4) },
 	}
 	MachadoSimples = Arma{
 		Nome: "Machado Simples",
-		Dano: dados.RolarDados(1, 6, 0),
+		Dano: func() int { return dados.RolarDados(1, 6) },
 	}
 	Adaga = Arma{
 		Nome: "Adaga",
-		Dano: dados.RolarDados(1, 4, 0),
+		Dano: func() int { return dados.RolarDados(1, 4) },
+	}
+	Soco = Arma{
+		Nome: "Soco",
+		Dano: func() int { return dados.RolarDados(1, 4) },
+	}
+	Mordida = Arma{
+		Nome: "Mordida",
+		Dano: func() int { return dados.RolarDados(1, 4) },
 	}
 )

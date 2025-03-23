@@ -30,9 +30,9 @@ type Personagem struct {
 
 func (p *Personagem) CausarDano() int {
 	if p.Arma != nil {
-		return p.Arma.Dano
+		return p.Arma.Dano()
 	}
-	soco := dados.RolarDados(1, 4, 0) // ataque desarmado
+	soco := dados.RolarDados(1, 4) // ataque desarmado
 	fmt.Printf("Personagem %s fez um ataque desarmado com %d de dano.", p.Nome, soco)
 	return soco
 }
