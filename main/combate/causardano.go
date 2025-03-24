@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func EncontrarInimigo(atacante *Participante, ordem []Participante) *Participante {
+func EncontrarAlvo(atacante *Participante, ordem []Participante) *Participante {
 	for i := range ordem {
 		alvo := &ordem[i]
 
@@ -17,18 +17,7 @@ func EncontrarInimigo(atacante *Participante, ordem []Participante) *Participant
 	return nil // Nenhum inimigo disponível
 }
 
-func EstaVivo(p *Participante) bool {
-	switch ref := p.Referencia.(type) {
-	case *factories.Personagem:
-		return ref.PontosDeVida > 0
-	case *factories.Monstro:
-		return ref.PontosDeVida > 0
-	default:
-		return false
-	}
-}
-
-func Ataque(atacante *Participante, alvo *Participante) {
+func Ataqe(atacante *Participante, alvo *Participante) {
 	fmt.Printf("⚔️ %s ataca %s!\n", atacante.Nome, alvo.Nome)
 	// Descobre o dano do atacante
 	var dano int

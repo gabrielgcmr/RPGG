@@ -1,18 +1,18 @@
-package dados
+package dado
 
 import (
 	"fmt"
 	"math/rand"
 )
 
-func RolarDados(qtd int, lados int) int {
+func Rolar(qtd int, lados int) int {
 	total := 0
 	fmt.Printf("🎲 Rolando %dd%d... ", qtd, lados)
 
 	for i := 0; i < qtd; i++ {
-		roll := rand.Intn(lados) + 1
-		fmt.Printf(" rolou %d \n", roll)
-		total += roll
+		result := rand.Intn(lados) + 1
+		fmt.Printf(" Resultado: %d \n", result)
+		total += result
 	}
 	return total
 }
