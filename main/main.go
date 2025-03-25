@@ -3,20 +3,33 @@ package main
 import (
 	"fmt"
 	"main/combate"
-	"main/entities"
-	"main/factories"
+	"main/domain/entities/herois"
+	monstros "main/domain/entities/monsters"
 )
 
 func main() {
-	ordem := combate.Iniciativa(
-		[]*factories.Personagem{&entities.Cactus, &entities.Pick},
-		[]*factories.Monstro{&entities.AranhaGigante, &entities.Lobo})
+	// ordem := combate.Iniciativa([]combate.Combatente{
+	// 	herois.Cactus,
+	// 	herois.Pick,
+	// 	monstros.AranhaGigante,
+	// 	monstros.Lobo,
+	// })
 
-	atacante := &ordem[0]
-	alvo := combate.EncontrarAlvo(atacante, ordem)
-	if alvo != nil {
-		combate.Ataque(atacante, alvo)
-	} else {
-		fmt.Println("⚠️ Nenhum inimigo disponível para atacar.")
-	}
+	fmt.Println(` Porradaria Iniciada! `)
+
+	// Teste 1: Herói ataca monstro (válido)
+	fmt.Println("\n=== TESTE 1: Ataque válido ===")
+	combate.JogadaDeAtaque(herois.Cactus, monstros.AranhaGigante)
+
+	// Teste 2: Monstro ataca herói (válido)
+	fmt.Println("\n=== TESTE 2: Ataque válido ===")
+	combate.JogadaDeAtaque(monstros.Ogro, herois.Hawnk)
+
+	// Teste 3: Herói ataca herói (fogo amigo)
+	fmt.Println("\n=== TESTE 3: Fogo amigo ===")
+	combate.JogadaDeAtaque(herois.Cactus, herois.Pick)
+
+	// Teste 4: Monstro ataca monstro (fogo amigo)
+	fmt.Println("\n=== TESTE 4: Fogo amigo ===")
+	combate.JogadaDeAtaque(monstros.AranhaGigante, monstros.AranhaGigante)
 }

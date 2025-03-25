@@ -1,4 +1,4 @@
-// domain/character/type.go
+// domain/personagem/type.go
 package personagem
 
 import (
@@ -8,7 +8,7 @@ import (
 
 type Personagem struct {
 	Nome   string
-	Tipo   string // "Herói", "NPC", "Monstro"
+	Equipe string // "Herói", "NPC", "Monstro"
 	Raça   string
 	Classe classes.Classe
 	Nivel  int

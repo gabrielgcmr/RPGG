@@ -6,8 +6,8 @@ import (
 )
 
 type Monstro struct {
-	Nome string
-	Tipo string
+	Nome   string
+	Equipe string
 
 	Atributos struct {
 		FOR int

@@ -7,9 +7,9 @@ import (
 	"main/domain/personagem"
 )
 
-var Cactus = personagem.NovoPersonagem(
-	"Cactus",
-	classes.Barbaro,
+var Hawnk = personagem.NovoPersonagem(
+	"Hawnk",
+	classes.Bardo,
 	raca.Humano{},
-	&armas.MachadoSimples,
+	&armas.Adaga,
 )

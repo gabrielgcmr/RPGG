@@ -2,51 +2,48 @@ package combate
 
 import (
 	"fmt"
-	"main/catalogs/dados"
-	"main/factories"
+	"main/game/dado"
 	"sort"
 )
 
-func Iniciativa(personagens []*factories.Personagem, monstro []*factories.Monstro) []Combatente {
-	fmt.Printf(" Iniciando rodada de combate!\n")
-	fmt.Printf(" Definindo iniciativa!\n")
-	var combatente []Combatente
-	//Rolar iniciativas e criar participantes
-	for _, p := range personagens {
-		fmt.Printf("%s vai rolar 1d20 \n", p.Nome)
-		rolagem := dados.RolarDados(1, 20)
-		iniciativa := rolagem + p.DES
-		fmt.Printf("%s rolou %d + DES %d. Iniciativa = %d \n", p.Nome, rolagem, p.DES, iniciativa)
+func Iniciativa(combatentes []Combatente) []Combatente {
+	fmt.Println("\n🎯 Iniciando rodada de combate!")
+	fmt.Println("🎲 Rolando iniciativa para os combatentes...")
 
-		combatente = append(combatente, Combatente{
-			Nome:       p.Nome,
-			Iniciativa: iniciativa,
-			Tipo:       "Personagem",
-			Referencia: p,
+	type iniciativaCombatente struct {
+		combatente Combatente
+		valor      int
+	}
+
+	var iniciativas []iniciativaCombatente
+
+	// Rolagem para cada combatente
+	for _, c := range combatentes {
+		fmt.Printf("\n %s vai rolar inciativa... ", c.GetNome())
+		rolagem := dado.Rolar(1, 20)
+		modificador := c.ModDES()
+		total := rolagem + modificador
+
+		fmt.Printf("%s rolou %d (d20) + %d (DES) = %d\n",
+			c.GetNome(), rolagem, modificador, total)
+
+		iniciativas = append(iniciativas, iniciativaCombatente{
+			combatente: c,
+			valor:      total,
 		})
 	}
 
-	for _, m := range monstro {
-		fmt.Printf("%s vai rolar 1d20 \n", m.Nome)
-		rolagem := dados.RolarDados(1, 20)
-		iniciativa := rolagem + m.DES
-		fmt.Printf("%s rolou %d + DES %d. Iniciativa = %d \n", m.Nome, rolagem, m.DES, iniciativa)
-
-		combatente = append(combatente, Combatente{
-			Nome:       m.Nome,
-			Iniciativa: iniciativa,
-			Tipo:       "Monstro",
-			Referencia: m,
-		})
-	}
-
-	sort.Slice(combatente, func(i, j int) bool {
-		return combatente[i].Iniciativa > combatente[j].Iniciativa
+	// Ordena do maior para o menor
+	sort.Slice(iniciativas, func(i, j int) bool {
+		return iniciativas[i].valor > iniciativas[j].valor
 	})
 
+	// Cria slice ordenada
 	fmt.Println("\n📋 Ordem de Ataque:")
-	for i, p := range combatente {
-		fmt.Printf("%dº - %s (%s) [Iniciativa: %d]\n", i+1, p.Nome, p.Tipo, p.Iniciativa)
+	resultado := make([]Combatente, len(iniciativas))
+	for i, item := range iniciativas {
+		resultado[i] = item.combatente
+		fmt.Printf("%dº: %s (%d)\n", i+1, item.combatente.GetNome(), item.valor)
 	}
-	return combatente
+	return resultado
 }

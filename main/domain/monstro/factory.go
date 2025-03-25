@@ -5,6 +5,12 @@ import (
 	"main/catalogo/armas"
 )
 
+const (
+	Heroi       = "Herói"
+	NPC         = "NPC"
+	TipoMonstro = "Monstro"
+)
+
 // Atributos representa os atributos de um monstro
 type Atributos struct {
 	FOR int // Força
@@ -20,7 +26,7 @@ func NovoMonstro(nome string, arma *armas.Arma, atributos Atributos, HP, XP int)
 
 	return &Monstro{
 		Nome:      nome,
-		Tipo:      "Monstro",
+		Equipe:    TipoMonstro,
 		Atributos: atributos,
 		CA:        atributos.CON + ((atributos.DES - 10) / 2),
 		HP:        HP,

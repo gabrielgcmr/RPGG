@@ -1,15 +1,18 @@
-// domain/character/methods.go
+// domain/personagem/methods.go
 package personagem
 
-import "main/game/dado"
+import (
+	"fmt"
+	"main/game/dado"
+)
 
 // --- Getters ---
-func (p *Personagem) GetNome() string { return p.Nome }
-func (p *Personagem) GetTipo() string { return p.Tipo }
-func (p *Personagem) GetRaça() string { return p.Raça }
-func (p *Personagem) GetCA() int      { return p.CA }
-func (p *Personagem) GetHP() int      { return p.HP }
-func (p *Personagem) EstaVivo() bool  { return p.HP > 0 }
+func (p *Personagem) GetNome() string   { return p.Nome }
+func (p *Personagem) GetEquipe() string { return p.Equipe }
+func (p *Personagem) GetRaça() string   { return p.Raça }
+func (p *Personagem) GetCA() int        { return p.CA }
+func (p *Personagem) GetHP() int        { return p.HP }
+func (p *Personagem) EstaVivo() bool    { return p.HP > 0 }
 
 // --- Modifiers ---
 func (p *Personagem) ModFOR() int { return (p.Atributos.FOR - 10) / 2 }
@@ -20,21 +23,23 @@ func (p *Personagem) ModSAB() int { return (p.Atributos.SAB - 10) / 2 }
 func (p *Personagem) ModCAR() int { return (p.Atributos.CAR - 10) / 2 }
 
 // --- Combate ---
-func (p *Personagem) Iniciativa() int {
+func (p *Personagem) GetIniciativa() int {
 	return dado.Rolar(1, 20) + p.ModDES()
 }
-
-func (p *Personagem) TomarDano(dano int) {
+func (p *Personagem) ReceberDano(dano int) {
 	if dano < 0 { // Prevenção contra cura acidental
 		dano = 0
 	}
 	p.HP -= dano
+	fmt.Printf("💢 %s agora tem %d de HP!\n", p.GetNome(), p.HP)
+	if p.HP <= 0 {
+		fmt.Println("☠️ MORREU!")
+	}
 }
 
-func (p *Personagem) Atacar() int {
+func (p *Personagem) CausarDano() int {
 	if p.Arma != nil {
-		return p.Arma.Dano()
+		return p.Arma.Dano() + p.ModFOR() // Modificador aplicado
 	}
-	soco := dado.Rolar(1, 4)
-	return soco + p.ModFOR() // ataque desarmado
+	return dado.Rolar(1, 4) + p.ModFOR() // Ataque desarmado
 }

@@ -4,14 +4,23 @@ package personagem
 import (
 	"main/catalogo/armas"
 	"main/catalogo/classes"
+	"main/catalogo/raca"
+)
+
+const (
+	Heroi       = "Herói"
+	NPC         = "NPC"
+	TipoMonstro = "Monstro"
 )
 
 func NovoPersonagem(
 	nome string,
+
 	classe classes.Classe,
+	raca raca.Raça,
 	arma *armas.Arma,
 ) *Personagem {
-	atributos := struct {
+	base := struct {
 		FOR int
 		DES int
 		CON int
@@ -27,10 +36,12 @@ func NovoPersonagem(
 		CAR: 10,
 	}
 
+	atributos := raca.AplicarBonus(base)
+
 	return &Personagem{
 		Nome:      nome,
-		Tipo:      "Heroi",
-		Raça:      "Humano",
+		Equipe:    Heroi,
+		Raça:      raca.Nome(),
 		Classe:    classe,
 		Nivel:     1,
 		XP:        0,
