@@ -13,7 +13,7 @@ func JogadaDeAtaque(atacante Combatente, alvo Combatente) {
 		return
 	}
 
-	fmt.Printf("⚔️ %s faz uma jogada de ataque em %s!\n", atacante.GetNome(), alvo.GetNome())
+	fmt.Printf("\n⚔️ %s faz uma jogada de ataque em %s!\n", atacante.GetNome(), alvo.GetNome())
 	rolagem := dado.Rolar(1, 20)
 	// Verifica se acertou
 	if rolagem == 20 {

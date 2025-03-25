@@ -28,4 +28,8 @@ var (
 		Nome: "Mordida",
 		Dano: func() int { return dado.Rolar(1, 4) },
 	}
+	AdagaMagica = Arma{
+		Nome: "Adaga Magica",
+		Dano: func() int { return dado.Rolar(1, 8) + 2 },
+	}
 )

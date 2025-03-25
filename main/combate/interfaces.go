@@ -9,4 +9,5 @@ type Combatente interface {
 	ReceberDano(int)
 	GetIniciativa() int
 	GetEquipe() string
+	EstaVivo() bool
 }
