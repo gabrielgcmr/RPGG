@@ -1,9 +1,9 @@
 package herois
 
 import (
-	"main/catalogo/armas"
-	"main/catalogo/classes"
-	"main/catalogo/raca"
+	"main/domain/catalogo/armas"
+	"main/domain/catalogo/classes"
+	"main/domain/catalogo/raca"
 	"main/domain/personagem"
 )
 

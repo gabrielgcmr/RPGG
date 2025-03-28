@@ -2,7 +2,7 @@
 package monstro
 
 import (
-	"main/catalogo/armas"
+	"main/domain/catalogo/armas"
 )
 
 type Monstro struct {

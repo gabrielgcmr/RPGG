@@ -3,7 +3,7 @@ package monstro
 
 import (
 	"fmt"
-	"main/game/dado"
+	"main/domain/game/dado"
 )
 
 // --- Getters ---

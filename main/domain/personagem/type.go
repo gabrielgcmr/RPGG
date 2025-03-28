@@ -2,8 +2,8 @@
 package personagem
 
 import (
-	"main/catalogo/armas"
-	"main/catalogo/classes"
+	"main/domain/catalogo/armas"
+	"main/domain/catalogo/classes"
 )
 
 type Personagem struct {

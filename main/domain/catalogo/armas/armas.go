@@ -1,6 +1,6 @@
 package armas
 
-import "main/game/dado"
+import "main/domain/game/dado"
 
 type Arma struct {
 	Nome string
@@ -30,6 +30,6 @@ var (
 	}
 	AdagaMagica = Arma{
 		Nome: "Adaga Magica",
-		Dano: func() int { return dado.Rolar(1, 8) + 2 },
+		Dano: func() int { return dado.Rolar(1, 8) },
 	}
 )

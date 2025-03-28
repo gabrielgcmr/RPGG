@@ -1,9 +1,9 @@
 package main
 
 import (
-	"main/combate"
-	"main/domain/entities/herois"
-	monstros "main/domain/entities/monsters"
+	"main/domain/entidades/herois"
+	"main/domain/entidades/monstros"
+	"main/domain/game/combate"
 )
 
 func main() {

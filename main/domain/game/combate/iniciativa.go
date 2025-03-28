@@ -2,7 +2,8 @@ package combate
 
 import (
 	"fmt"
-	"main/game/dado"
+	"main/domain/game/dado"
+
 	"sort"
 )
 

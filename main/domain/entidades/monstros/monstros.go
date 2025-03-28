@@ -1,7 +1,7 @@
 package monstros
 
 import (
-	"main/catalogo/armas"
+	"main/domain/catalogo/armas"
 	"main/domain/monstro"
 )
 

@@ -2,7 +2,7 @@ package combate
 
 import (
 	"fmt"
-	"main/game/dado"
+	"main/domain/game/dado"
 )
 
 func JogadaDeAtaque(atacante Combatente, alvo Combatente) {

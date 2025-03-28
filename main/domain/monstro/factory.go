@@ -1,9 +1,7 @@
 // domain/monstro/factory.go
 package monstro
 
-import (
-	"main/catalogo/armas"
-)
+import "main/domain/catalogo/armas"
 
 const (
 	Heroi       = "Herói"
